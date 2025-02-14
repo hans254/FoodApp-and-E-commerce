@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryandecommerceapp/pages/home.dart';
 import 'package:fooddeliveryandecommerceapp/pages/onboarding.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         
       ),
-      home: const Onboarding(),
+      home: const Home(),
     );
   }
 }
