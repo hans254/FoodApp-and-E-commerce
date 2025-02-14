@@ -12,7 +12,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
-  
+  String track = "0";
+
   // get index => null;
 
   @override
@@ -93,17 +94,19 @@ class _HomeState extends State<Home> {
                 )
               ],
             ),
-            SizedBox(height: 20.0,),
+            SizedBox(
+              height: 20.0,
+            ),
             Container(
-                height: 60,
-                child: ListView.builder(
+              height: 60,
+              child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.length,
-                itemBuilder: (context, index){
+                itemBuilder: (context, index) {
                   return CategoryTile(
-                    image: categories[index].image!, 
-                    name: categories[index].name!,);
+                    categories[index].name!, categories[index].image!, index.toString()
+                  );
                 },
               ),
             )
@@ -112,33 +115,63 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
 
-class CategoryTile extends StatefulWidget {
-  String name, image;
-  CategoryTile({required this.name, required this.image});
 
-  @override
-  State<CategoryTile> createState() => _CategoryTileState();
-}
-
-class _CategoryTileState extends State<CategoryTile> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.only(left: 20.0, right: 20.0),
-      margin: EdgeInsets.only(right: 20.0),
-      decoration: BoxDecoration(
-        color: Color(0xffef2b39),
-        borderRadius: BorderRadius.circular(30),
-      ),
-      child: Row(
-        children: [
-          Image.asset(widget.image, height: 40, width: 40, fit: BoxFit.cover,),
-          SizedBox(height: 10.0,),
-          Text(widget.name, style: AppWidget.whiteTextFieldStyle(),)
-        ],
+  Widget CategoryTile(String name, String image, String categoryindex){
+    return GestureDetector(
+      onTap: () {
+        track = categoryindex.toString();
+        setState(() {
+          
+        });
+      },
+      child: track == categoryindex? Container(
+        padding: EdgeInsets.only(left: 20.0, right: 20.0),
+        margin: EdgeInsets.only(right: 20.0),
+        decoration: BoxDecoration(
+          color: Color(0xffef2b39),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Row(
+          children: [
+            Image.asset(
+              image,
+              height: 40,
+              width: 40,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              name,
+              style: AppWidget.whiteTextFieldStyle(),
+            )
+          ],
+        ),
+      ): Container(
+        padding: EdgeInsets.only(left: 20.0, right: 20.0),
+        margin: EdgeInsets.only(right: 20.0),
+        decoration: BoxDecoration(color: Color(0xFFececf8), borderRadius: BorderRadius.circular(30)),
+        child: Row(
+          children: [
+            Image.asset(
+              image,
+              height: 40,
+              width: 40,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
+            Text(
+              name,
+              style: AppWidget.SimpleLineTextFieldStyle(),
+            )
+          ],
+        ),
       ),
     );
   }
 }
+
