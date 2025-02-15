@@ -23,4 +23,12 @@ class AppWidget {
       fontWeight: FontWeight.bold,
     );
   }
+
+  static TextStyle boldTextFieldStyle() {
+    return TextStyle(
+      color: Colors.black,
+      fontSize: 15.0,
+      fontWeight: FontWeight.bold,
+    );
+  }
 }

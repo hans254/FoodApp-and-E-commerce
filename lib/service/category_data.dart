@@ -24,5 +24,10 @@ List<CategoryModel> getCategories() {
   category.add(categoryModel);
   categoryModel = new CategoryModel();
 
+  categoryModel.name = "See Food";
+  categoryModel.image = "images/pizza4.png";
+  category.add(categoryModel);
+  categoryModel = CategoryModel();
+
   return category;
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryandecommerceapp/model/category_model.dart';
+import 'package:fooddeliveryandecommerceapp/model/pizza_model.dart';
 import 'package:fooddeliveryandecommerceapp/service/category_data.dart';
+import 'package:fooddeliveryandecommerceapp/service/pizza_data.dart';
 import 'package:fooddeliveryandecommerceapp/service/widget_support.dart';
 
 class Home extends StatefulWidget {
@@ -12,6 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<CategoryModel> categories = [];
+  List<PizzaModel> pizza = [];
   String track = "0";
 
   // get index => null;
@@ -19,6 +22,7 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     categories = getCategories();
+    pizza = getPizza();
     super.initState();
   }
 
@@ -98,17 +102,33 @@ class _HomeState extends State<Home> {
               height: 20.0,
             ),
             Container(
-              height: 60,
+              height: 70,
               child: ListView.builder(
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
-                  return CategoryTile(
-                    categories[index].name!, categories[index].image!, index.toString()
-                  );
+                  return CategoryTile(categories[index].name!,
+                      categories[index].image!, index.toString());
                 },
               ),
+            ),
+            SizedBox(height: 20.0),
+            Container(
+              height: MediaQuery.of(context).size.height/2,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: 0.6,
+                    mainAxisSpacing: 10.0,
+                    crossAxisSpacing: 10.0),
+                itemCount: pizza.length,
+                itemBuilder: (context, index) {
+                  return FoodTile(
+                    pizza[index].name!,
+                    pizza[index].image!,
+                    pizza[index].price!);
+            }),
             )
           ],
         ),
@@ -116,62 +136,85 @@ class _HomeState extends State<Home> {
     );
   }
 
+  Widget FoodTile(String name, String image, String price) {
+    return Container(
+      child: Column(
+        children: [
+          Image.asset(
+            image,
+            height: 150,
+            width: 150,
+            fit: BoxFit.contain,
+          ),
+          Text(name, style: AppWidget.boldTextFieldStyle(),),
+          Text(price, style: AppWidget.boldTextFieldStyle(),),
+        ],
+      ),
+    );
+  }
 
-  Widget CategoryTile(String name, String image, String categoryindex){
+  Widget CategoryTile(String name, String image, String categoryindex) {
     return GestureDetector(
       onTap: () {
         track = categoryindex.toString();
-        setState(() {
-          
-        });
+        setState(() {});
       },
-      child: track == categoryindex? Container(
-        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-        margin: EdgeInsets.only(right: 20.0),
-        decoration: BoxDecoration(
-          color: Color(0xffef2b39),
-          borderRadius: BorderRadius.circular(30),
-        ),
-        child: Row(
-          children: [
-            Image.asset(
-              image,
-              height: 40,
-              width: 40,
-              fit: BoxFit.cover,
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              name,
-              style: AppWidget.whiteTextFieldStyle(),
+      child: track == categoryindex
+          ? Container(
+              margin: EdgeInsets.only(right: 20.0, bottom: 10.0),
+              child: Material(
+                elevation: 3.0,
+                borderRadius: BorderRadius.circular(30),
+                child: Container(
+                  padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                  decoration: BoxDecoration(
+                    color: Color(0xffef2b39),
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        image,
+                        height: 40,
+                        width: 40,
+                        fit: BoxFit.cover,
+                      ),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text(
+                        name,
+                        style: AppWidget.whiteTextFieldStyle(),
+                      )
+                    ],
+                  ),
+                ),
+              ),
             )
-          ],
-        ),
-      ): Container(
-        padding: EdgeInsets.only(left: 20.0, right: 20.0),
-        margin: EdgeInsets.only(right: 20.0),
-        decoration: BoxDecoration(color: Color(0xFFececf8), borderRadius: BorderRadius.circular(30)),
-        child: Row(
-          children: [
-            Image.asset(
-              image,
-              height: 40,
-              width: 40,
-              fit: BoxFit.cover,
+          : Container(
+              padding: EdgeInsets.only(left: 20.0, right: 20.0),
+              margin: EdgeInsets.only(right: 20.0, bottom: 10.0),
+              decoration: BoxDecoration(
+                  color: Color(0xFFececf8),
+                  borderRadius: BorderRadius.circular(30)),
+              child: Row(
+                children: [
+                  Image.asset(
+                    image,
+                    height: 40,
+                    width: 40,
+                    fit: BoxFit.cover,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    name,
+                    style: AppWidget.SimpleLineTextFieldStyle(),
+                  )
+                ],
+              ),
             ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              name,
-              style: AppWidget.SimpleLineTextFieldStyle(),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
-
