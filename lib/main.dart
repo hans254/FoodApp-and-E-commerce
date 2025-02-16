@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryandecommerceapp/pages/bottomnav.dart';
+import 'package:fooddeliveryandecommerceapp/pages/detail_page.dart';
 import 'package:fooddeliveryandecommerceapp/pages/home.dart';
 import 'package:fooddeliveryandecommerceapp/pages/onboarding.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         
       ),
-      home: const BottomNav(),
+      home: const DetailPage(),
     );
   }
 }
