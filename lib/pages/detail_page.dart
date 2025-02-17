@@ -14,12 +14,12 @@ class _DetailPageState extends State<DetailPage> {
   late double price;
   int quantity = 1;
   double totalPrice = 0.0;
- @override
+  @override
   void initState() {
     super.initState();
     try {
       price = double.parse(widget.price);
-      totalPrice = price;
+      totalPrice = double.parse(price.toStringAsFixed(2));
     } catch (e) {
       price = 0.0;
       totalPrice = 0.0;
@@ -91,11 +91,9 @@ class _DetailPageState extends State<DetailPage> {
               children: [
                 GestureDetector(
                   onTap: () {
-                    quantity = quantity + 1;
+                    quantity += 1;
                     totalPrice = totalPrice + double.parse(widget.price);
-                    setState(() {
-                      
-                    });
+                    setState(() {});
                   },
                   child: Material(
                     elevation: 30.0,
@@ -118,28 +116,35 @@ class _DetailPageState extends State<DetailPage> {
                   width: 10.0,
                 ),
                 Text(
-                  "1",
+                  quantity.toString(),
                   style: Appwidget.boldTextFieldStyle(),
                 ),
                 SizedBox(
                   width: 10.0,
                 ),
-                Material(
-                  elevation: 30.0,
-                  borderRadius: BorderRadius.circular(5),
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      color: Color(0xffef2b39),
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    child: Icon(
-                      Icons.remove,
-                      color: Colors.white,
-                      size: 30.0,
+                GestureDetector(
+                  onTap: () {
+                    quantity -= 1;
+                    totalPrice = totalPrice + double.parse(widget.price);
+                    setState(() {});
+                  },
+                  child: Material(
+                    elevation: 30.0,
+                    borderRadius: BorderRadius.circular(5),
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Color(0xffef2b39),
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      child: Icon(
+                        Icons.remove,
+                        color: Colors.white,
+                        size: 30.0,
+                      ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
             SizedBox(
@@ -159,7 +164,7 @@ class _DetailPageState extends State<DetailPage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Center(
-                        child: Text("\$"+totalPrice.toString(),
+                        child: Text("\$${(widget.price * quantity).toString()}",
                             style: TextStyle(
                               fontSize: 20.0,
                               color: Colors.white,
