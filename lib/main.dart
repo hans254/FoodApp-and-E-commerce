@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         
       ),
-      home: const DetailPage(),
+      home: BottomNav(),
     );
   }
 }

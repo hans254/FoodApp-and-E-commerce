@@ -9,6 +9,7 @@ class AppWidget {
     );
   }
 
+ 
   static TextStyle SimpleLineTextFieldStyle() {
     return TextStyle(
       color: Colors.black,
@@ -19,7 +20,15 @@ class AppWidget {
   static TextStyle whiteTextFieldStyle() {
     return TextStyle(
       color: Colors.white,
-      fontSize: 18,
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle boldwhiteTextFieldStyle() {
+    return TextStyle(
+      color: Colors.white,
+      fontSize: 20,
       fontWeight: FontWeight.bold,
     );
   }

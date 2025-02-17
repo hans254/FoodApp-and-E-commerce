@@ -44,4 +44,6 @@ class Appwidget {
                 fontFamily: 'Poppins'
               );
   }
+
+  static whiteTextFieldStyle() {}
 }

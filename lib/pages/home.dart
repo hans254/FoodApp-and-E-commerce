@@ -3,6 +3,7 @@ import 'package:fooddeliveryandecommerceapp/model/burger_model.dart';
 import 'package:fooddeliveryandecommerceapp/model/category_model.dart';
 import 'package:fooddeliveryandecommerceapp/model/chinese_model.dart';
 import 'package:fooddeliveryandecommerceapp/model/pizza_model.dart';
+import 'package:fooddeliveryandecommerceapp/pages/detail_page.dart';
 import 'package:fooddeliveryandecommerceapp/service/burger_data.dart';
 import 'package:fooddeliveryandecommerceapp/service/category_data.dart';
 import 'package:fooddeliveryandecommerceapp/service/chinese_data.dart';
@@ -260,18 +261,25 @@ class _HomeState extends State<Home> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Container(
-                height: 30.0,
-                width: 80,
-                decoration: BoxDecoration(
-                  color: Color(0xffef2b39),
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      bottomRight: Radius.circular(20)),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailPage(image: image, name: name, price: price)));
+                },
+
+                child: Container(
+                  height: 30.0,
+                  width: 80,
+                  decoration: BoxDecoration(
+                    color: Color(0xffef2b39),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(25),
+                        bottomRight: Radius.circular(20)),
+                  ),
+                  child:
+                      Icon(Icons.arrow_forward, color: Colors.white, size: 30.0),
                 ),
-                child:
-                    Icon(Icons.arrow_forward, color: Colors.white, size: 30.0),
-              )
+              ),
+              
             ],
           )
         ],
