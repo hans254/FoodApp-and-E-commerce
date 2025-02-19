@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryandecommerceapp/pages/signup.dart';
 import 'package:fooddeliveryandecommerceapp/widget/widget_support.dart';
 
 class Login extends StatefulWidget {
@@ -57,7 +58,7 @@ class _LoginState extends State<Login> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                  height: MediaQuery.of(context).size.height/2,
+                  height: MediaQuery.of(context).size.height/1.8,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -97,6 +98,13 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       SizedBox(height: 10.0,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text("Forgot Password!", style: Appwidget.semiBoldTextFieldStyle(),)
+                        ],
+                      ),
+                      SizedBox(height: 10.0,),
                       Center(
                         child: Container(
                           padding: EdgeInsets.all(10),
@@ -120,9 +128,17 @@ class _LoginState extends State<Login> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text("Already have an account? ", style: Appwidget.semiBoldTextFieldStyle()),
+                          Text("Don't have an Account? ", style: Appwidget.semiBoldTextFieldStyle()),
                           SizedBox(width: 5.0,),
-                          Text("SignUp", style: Appwidget.currentBoldTextFieldStyle())
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Signup()),
+                              );
+                            },
+                            child: Text("SignUp", style: Appwidget.currentBoldTextFieldStyle()),
+                          )
                         ],
                       )
                     ],
