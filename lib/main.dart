@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fooddeliveryandecommerceapp/pages/bottomnav.dart';
 import 'package:fooddeliveryandecommerceapp/pages/detail_page.dart';
 import 'package:fooddeliveryandecommerceapp/pages/home.dart';
+import 'package:fooddeliveryandecommerceapp/pages/login.dart';
 import 'package:fooddeliveryandecommerceapp/pages/onboarding.dart';
+import 'package:fooddeliveryandecommerceapp/pages/signup.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         
       ),
-      home: BottomNav(),
+      home: Home(),
     );
   }
 }

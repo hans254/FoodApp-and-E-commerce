@@ -13,7 +13,7 @@ class AppWidget {
   static TextStyle SimpleLineTextFieldStyle() {
     return TextStyle(
       color: Colors.black,
-      fontSize: 18,
+      fontSize: 20,
     );
   }
 
@@ -25,10 +25,18 @@ class AppWidget {
     );
   }
 
-  static TextStyle boldwhiteTextFieldStyle() {
+  static TextStyle whiteColorTextFieldStyle() {
     return TextStyle(
       color: Colors.white,
       fontSize: 20,
+      fontWeight: FontWeight.bold,
+    );
+  }
+
+  static TextStyle boldwhiteTextFieldStyle() {
+    return TextStyle(
+      color: Colors.white,
+      fontSize: 18,
       fontWeight: FontWeight.bold,
     );
   }

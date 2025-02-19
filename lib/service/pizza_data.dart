@@ -6,7 +6,7 @@ List<PizzaModel> getPizza() {
 
   pizzaModel.name = "Cheese Pizza";
   pizzaModel.image = "images/pizza1.png";
-  pizzaModel.price = "10.99";
+  pizzaModel.price = "10";
   pizza.add(pizzaModel);
   pizzaModel = new PizzaModel();
 

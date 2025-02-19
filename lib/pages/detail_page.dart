@@ -124,9 +124,12 @@ class _DetailPageState extends State<DetailPage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    quantity -= 1;
-                    totalPrice = totalPrice + double.parse(widget.price);
-                    setState(() {});
+                    setState(() {
+                      if (quantity > 1) {
+                        quantity -= 1;
+                        totalPrice = price * quantity;
+                      }
+                    });
                   },
                   child: Material(
                     elevation: 30.0,
@@ -164,7 +167,7 @@ class _DetailPageState extends State<DetailPage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Center(
-                        child: Text("\$${(widget.price * quantity).toString()}",
+                        child: Text("\$${(price * quantity).toStringAsFixed(2)}",
                             style: TextStyle(
                               fontSize: 20.0,
                               color: Colors.white,
