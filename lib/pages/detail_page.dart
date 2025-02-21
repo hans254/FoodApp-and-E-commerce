@@ -31,7 +31,7 @@ class _DetailPageState extends State<DetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        margin: EdgeInsets.only(top: 20.0, left: 10.0),
+        margin: EdgeInsets.only(top: 60.0, left: 20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,7 +46,7 @@ class _DetailPageState extends State<DetailPage> {
                     borderRadius: BorderRadius.circular(30)),
                 child: Icon(
                   Icons.arrow_back,
-                  size: 30.0,
+                  size: 40.0,
                   color: Colors.white,
                 ),
               ),

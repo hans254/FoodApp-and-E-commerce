@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
           children: [
             Container(
               height: MediaQuery.of(context).size.height/2.5,
-              padding: EdgeInsets.only(top: 20.0),
+              padding: EdgeInsets.only(top: 80.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Color(0xffffefbf),
@@ -58,11 +58,11 @@ class _LoginState extends State<Login> {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(20),
                     ),
-                  height: MediaQuery.of(context).size.height/1.8,
+                  height: MediaQuery.of(context).size.height/2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(height: 20.0,),
+                      SizedBox(height: 30.0,),
                       Center(
                         child: Text("Login", style: Appwidget.headlineTextFieldStyle(),),
                       ),
