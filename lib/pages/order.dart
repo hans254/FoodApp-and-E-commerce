@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryandecommerceapp/service/database.dart';
+import 'package:fooddeliveryandecommerceapp/service/shared_pref.dart';
 import 'package:fooddeliveryandecommerceapp/widget/widget_support.dart';
 
 class Order extends StatefulWidget {
@@ -10,6 +12,25 @@ class Order extends StatefulWidget {
 }
 
 class _OrderState extends State<Order> {
+  String? id;
+
+  getthesharedpref() async {
+    id = await SharedpreferenceHelper().getUserId();
+    setState(() {});
+  }
+
+  getontheload() async {
+    await getthesharedpref();
+    orderStream = await DatabaseMethods().getUserOrders(id!);
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getontheload();
+  }
+
   Stream? orderStream;
 
   Widget allOrders() {
@@ -18,6 +39,7 @@ class _OrderState extends State<Order> {
         builder: (context, AsyncSnapshot snapshot) {
           return snapshot.hasData
               ? ListView.builder(
+                padding: EdgeInsets.zero,
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
                     DocumentSnapshot ds = snapshot.data.docs[index];
@@ -75,7 +97,7 @@ class _OrderState extends State<Order> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         Text(
-                                          "Cheese Burger",
+                                          ds["FoodName"],
                                           style: Appwidget
                                               .headlineTextFieldStyle(),
                                         ),
@@ -92,7 +114,7 @@ class _OrderState extends State<Order> {
                                               width: 10.0,
                                             ),
                                             Text(
-                                              "4",
+                                              ds["Quantity"],
                                               style: Appwidget
                                                   .boldTextFieldStyle(),
                                             ),
@@ -107,7 +129,7 @@ class _OrderState extends State<Order> {
                                               width: 10.0,
                                             ),
                                             Text(
-                                              "\$48",
+                                              "\$" + ds["Total"],
                                               style: Appwidget
                                                   .boldTextFieldStyle(),
                                             ),
@@ -117,7 +139,7 @@ class _OrderState extends State<Order> {
                                           height: 5.0,
                                         ),
                                         Text(
-                                          "Pending!",
+                                          ds["Status"] + "!",
                                           style: TextStyle(
                                               color: Color(0xffef2b39),
                                               fontSize: 20.0,
@@ -168,6 +190,10 @@ class _OrderState extends State<Order> {
                     SizedBox(
                       height: 20.0,
                     ),
+                    Container(
+                      height: MediaQuery.of(context).size.height/1.5,
+                      child: allOrders(),
+                    )
                   ],
                 ),
               ))
