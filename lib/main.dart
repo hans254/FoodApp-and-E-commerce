@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'Mobile Resturant',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: BottomNav(),
+      home: Login(),
     );
   }
 }

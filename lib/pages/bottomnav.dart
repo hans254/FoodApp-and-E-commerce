@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:fooddeliveryandecommerceapp/pages/home.dart';
+import 'package:fooddeliveryandecommerceapp/pages/order.dart';
+import 'package:fooddeliveryandecommerceapp/pages/profile.dart';
 import 'package:fooddeliveryandecommerceapp/pages/wallet.dart';
-// import 'package:fooddeliveryandecommerceapp/pages/order.dart';
-// import 'package:fooddeliveryandecommerceapp/pages/profile.dart';
 import 'package:fooddeliveryandecommerceapp/pages/wallet.dart';
 
 class BottomNav extends StatefulWidget {
@@ -17,22 +17,19 @@ class _BottomNavState extends State<BottomNav> {
   int currentTabIndex = 0;
 
   late List<Widget> pages;
-  // late Widget currentPage;
-  late Home Homepage;
-  // late Profile profile;
-  // late Order order;
+  late Widget currentPage;
+  late Home homepage;
+  late Profile profile;
+  late Order order;
   late Wallet wallet;
   
   @override
   void initState() {
-    Homepage = const Home();
-    // order = const Order();
-    // profile = const Profile();
-    wallet = const Wallet();
-     pages =[Homepage];
-    
-
-    // pages =[Homepage, order, wallet, profile];
+    homepage = const Home();
+    order = const Order();
+    profile = const Profile();
+    wallet = const Wallet();  
+    pages =[homepage, order, wallet, profile];
     super.initState();
   }
 

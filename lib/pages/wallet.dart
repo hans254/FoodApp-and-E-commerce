@@ -37,7 +37,7 @@ class _WalletState extends State<Wallet> {
                       child: Row(
                         children: [
                           Image.asset(
-                            "images/fried-chicken-with-grilled-potatoes-eggplants-tomatoes-peppers.jpg",
+                            "images/wallet.png",
                             height: 60,
                             width: 60,
                             fit: BoxFit.cover,
@@ -124,7 +124,7 @@ class _WalletState extends State<Wallet> {
                       padding: const EdgeInsets.symmetric(vertical: 12.0),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 9, 117, 27),
+                        color: const Color(0xffef2b39),
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: const Center(
