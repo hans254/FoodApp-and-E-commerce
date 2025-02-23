@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryandecommerceapp/admin/admin_login.dart';
 import 'package:fooddeliveryandecommerceapp/pages/bottomnav.dart';
 import 'package:fooddeliveryandecommerceapp/pages/detail_page.dart';
 import 'package:fooddeliveryandecommerceapp/pages/home.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       title: 'Mobile Resturant',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
-      home: Login(),
+      home: AdminLogin(),
     );
   }
 }
