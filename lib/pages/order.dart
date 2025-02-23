@@ -44,8 +44,8 @@ class _OrderState extends State<Order> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot ds = snapshot.data.docs[index];
                     return Container(
-                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: Material(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+                       child: Material(
                         elevation: 30,
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(20),

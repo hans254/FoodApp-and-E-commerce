@@ -19,11 +19,13 @@ class _AdminLoginState extends State<AdminLogin> {
         body: //isLoading ?
             Center(
       child: //CircularProgressIndicator()): // Show loading indicator
-          Container(
+         Container(
+            padding: EdgeInsets.zero,
         child: Stack(
           children: [
+
             Container(
-              height: MediaQuery.of(context).size.height / 2.5,
+              height: MediaQuery.of(context).size.height / 2.0,
               padding: EdgeInsets.only(top: 80.0),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
@@ -58,7 +60,7 @@ class _AdminLoginState extends State<AdminLogin> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  height: MediaQuery.of(context).size.height / 2,
+                  height: MediaQuery.of(context).size.height / 3,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
