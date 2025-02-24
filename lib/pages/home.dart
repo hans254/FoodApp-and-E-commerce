@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryandecommerceapp/model/burger_model.dart';
 import 'package:fooddeliveryandecommerceapp/model/category_model.dart';
@@ -7,6 +8,7 @@ import 'package:fooddeliveryandecommerceapp/pages/detail_page.dart';
 import 'package:fooddeliveryandecommerceapp/service/burger_data.dart';
 import 'package:fooddeliveryandecommerceapp/service/category_data.dart';
 import 'package:fooddeliveryandecommerceapp/service/chinese_data.dart';
+import 'package:fooddeliveryandecommerceapp/service/database.dart';
 import 'package:fooddeliveryandecommerceapp/service/pizza_data.dart';
 import 'package:fooddeliveryandecommerceapp/service/widget_support.dart';
 
@@ -33,6 +35,54 @@ class _HomeState extends State<Home> {
     burger = getBurger();
     chinese = getChinese();
     super.initState();
+  }
+
+  List<dynamic> queryResultSet = []; // Specify type for clarity
+  List<dynamic> tempSearchStore = []; // Assuming dynamic for Firestore data
+
+  void initiateSearch(String value) {
+    // Added return type and parameter type
+    if (value.isEmpty) {
+      // Simplified empty check
+      setState(() {
+        queryResultSet = [];
+        tempSearchStore = [];
+        var search = false; // Optional: reset search flag
+      });
+      return; // Early exit for empty input
+    }
+
+    setState(() {
+      var search = true;
+    });
+
+    String capitalizedValue =
+        value.substring(0, 1).toUpperCase() + value.substring(1);
+
+    if (queryResultSet.isEmpty && value.length == 1) {
+      DatabaseMethods().search(value).then((QuerySnapshot docs) {
+        // Fixed callback
+        for (int i = 0; i < docs.docs.length; ++i) {
+          queryResultSet.add(docs.docs[i].data());
+        }
+        // Filter results after fetching
+        filterResults(capitalizedValue);
+      });
+    } else {
+      filterResults(capitalizedValue);
+    }
+  }
+
+// Helper function to filter results
+  void filterResults(String capitalizedValue) {
+    tempSearchStore = []; // Clear before filtering
+    for (var element in queryResultSet) {
+      if (element['Name'].startsWith(capitalizedValue)) {
+        // Fixed method name
+        tempSearchStore.add(element);
+      }
+    }
+    setState(() {}); // Update UI once after filtering
   }
 
   @override
@@ -87,6 +137,10 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextField(
+                      controller: SearchController(),
+                      onChanged: (value) {
+                        initiateSearch(value.toUpperCase());
+                      },
                       decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Search food item..."),
@@ -262,10 +316,13 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> DetailPage(image: image, name: name, price: price)));
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => DetailPage(
+                              image: image, name: name, price: price)));
                 },
-
                 child: Container(
                   height: 30.0,
                   width: 80,
@@ -275,11 +332,10 @@ class _HomeState extends State<Home> {
                         topLeft: Radius.circular(25),
                         bottomRight: Radius.circular(20)),
                   ),
-                  child:
-                      Icon(Icons.arrow_forward, color: Colors.white, size: 30.0),
+                  child: Icon(Icons.arrow_forward,
+                      color: Colors.white, size: 30.0),
                 ),
               ),
-              
             ],
           )
         ],

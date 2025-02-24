@@ -35,7 +35,8 @@ class _ManageUsersState extends State<ManageUsers> {
                   itemBuilder: (context, index) {
                     DocumentSnapshot ds = snapshot.data.docs[index];
                     return Container(
-                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      margin: EdgeInsets.only(
+                          left: 20.0, right: 20.0, bottom: 20.0),
                       child: Material(
                         elevation: 3.0,
                         borderRadius: BorderRadius.circular(10),
@@ -96,19 +97,25 @@ class _ManageUsersState extends State<ManageUsers> {
                                       SizedBox(
                                         height: 10.0,
                                       ),
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.black,
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        width: 100,
-                                        height: 50,
-                                        child: Center(
-                                          child: Text("Remove",
-                                              style: TextStyle(
-                                                  fontSize: 20.0,
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Colors.white)),
+                                      GestureDetector(
+                                        onTap: () async {
+                                          await DatabaseMethods()
+                                              .deleteUser(ds["Id"]);
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.black,
+                                              borderRadius:
+                                                  BorderRadius.circular(10)),
+                                          width: 100,
+                                          height: 50,
+                                          child: Center(
+                                            child: Text("Remove",
+                                                style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white)),
+                                          ),
                                         ),
                                       )
                                     ],
@@ -179,7 +186,10 @@ class _ManageUsersState extends State<ManageUsers> {
                   SizedBox(
                     height: 20.0,
                   ),
-                  allUsers(),
+                  Container(
+                    height: MediaQuery.of(context).size.height / 2,
+                    child: allUsers(),
+                  )
                 ],
               ),
             ))
