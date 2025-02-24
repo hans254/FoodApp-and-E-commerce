@@ -2,13 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddeliveryandecommerceapp/admin/admin_login.dart';
 import 'package:fooddeliveryandecommerceapp/admin/all_order.dart';
+import 'package:fooddeliveryandecommerceapp/admin/home_add.dart';
 import 'package:fooddeliveryandecommerceapp/admin/home_admin.dart';
 import 'package:fooddeliveryandecommerceapp/admin/manage_users.dart';
 import 'package:fooddeliveryandecommerceapp/pages/bottomnav.dart';
 import 'package:fooddeliveryandecommerceapp/pages/detail_page.dart';
 import 'package:fooddeliveryandecommerceapp/pages/home.dart';
 import 'package:fooddeliveryandecommerceapp/pages/login.dart';
-import 'package:fooddeliveryandecommerceapp/pages/onboarding.dart';
+import 'package:fooddeliveryandecommerceapp/pages/onboard.dart';
 import 'package:fooddeliveryandecommerceapp/pages/signup.dart';
 import 'firebase_options.dart'; // Add this import
 

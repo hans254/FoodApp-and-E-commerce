@@ -22,11 +22,14 @@ class _SignupState extends State<Signup> {
   bool isLoading = false; // Add loading state
 
   Future<void> registration() async {
-    if (mailcontroller.text.isEmpty || passwordcontroller.text.isEmpty || namecontroller.text.isEmpty) {
+    if (mailcontroller.text.isEmpty ||
+        passwordcontroller.text.isEmpty ||
+        namecontroller.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           backgroundColor: Colors.red,
-          content: Text("Please fill all fields", style: TextStyle(fontSize: 18.0)),
+          content:
+              Text("Please fill all fields", style: TextStyle(fontSize: 18.0)),
         ),
       );
       return;
@@ -34,8 +37,8 @@ class _SignupState extends State<Signup> {
 
     setState(() => isLoading = true); // Show loading
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+      UserCredential userCredential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: mailcontroller.text.trim(), // Use controller directly
         password: passwordcontroller.text, // Use controller directly
       );
@@ -44,12 +47,14 @@ class _SignupState extends State<Signup> {
         "Name": namecontroller.text,
         "Email": mailcontroller.text,
         "id": id,
-        "Wallet":"0",
+        "Wallet": "0",
       };
       await SharedpreferenceHelper().saveUserEmail(mailcontroller.text);
       await SharedpreferenceHelper().saveUserName(namecontroller.text);
+      await SharedpreferenceHelper().saveUserId(id);
       await DatabaseMethods().addUserDetails(userInfoMap, id);
-      if (mounted) { // Check if widget is still mounted
+      if (mounted) {
+        // Check if widget is still mounted
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.green,
@@ -59,7 +64,8 @@ class _SignupState extends State<Signup> {
             ),
           ),
         );
-        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNav()));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => BottomNav()));
       }
     } on FirebaseAuthException catch (e) {
       String message;
@@ -89,7 +95,8 @@ class _SignupState extends State<Signup> {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             backgroundColor: Colors.red,
-            content: Text("Unexpected error: $e", style: TextStyle(fontSize: 18.0)),
+            content:
+                Text("Unexpected error: $e", style: TextStyle(fontSize: 18.0)),
           ),
         );
       }
@@ -127,8 +134,10 @@ class _SignupState extends State<Signup> {
                     ),
                     child: Column(
                       children: [
-                        Image.asset("images/pan.png", height: 150, width: 200, fit: BoxFit.fill),
-                        Image.asset("images/logo.png", height: 50, width: 150, fit: BoxFit.cover),
+                        Image.asset("images/pan.png",
+                            height: 150, width: 200, fit: BoxFit.fill),
+                        Image.asset("images/logo.png",
+                            height: 50, width: 150, fit: BoxFit.cover),
                       ],
                     ),
                   ),
@@ -148,16 +157,18 @@ class _SignupState extends State<Signup> {
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        height: MediaQuery.of(context).size.height / 2,
+                        height: MediaQuery.of(context).size.height / 2.3,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(height: 30.0),
                             Center(
-                              child: Text("SignUp", style: Appwidget.headlineTextFieldStyle()),
+                              child: Text("SignUp",
+                                  style: Appwidget.headlineTextFieldStyle()),
                             ),
                             SizedBox(height: 10.0),
-                            Text("Name", style: Appwidget.currentBoldTextFieldStyle()),
+                            Text("Name",
+                                style: Appwidget.currentBoldTextFieldStyle()),
                             SizedBox(height: 10.0),
                             Container(
                               decoration: BoxDecoration(
@@ -174,7 +185,8 @@ class _SignupState extends State<Signup> {
                               ),
                             ),
                             SizedBox(height: 10.0),
-                            Text("Email", style: Appwidget.currentBoldTextFieldStyle()),
+                            Text("Email",
+                                style: Appwidget.currentBoldTextFieldStyle()),
                             SizedBox(height: 10.0),
                             Container(
                               decoration: BoxDecoration(
@@ -191,7 +203,8 @@ class _SignupState extends State<Signup> {
                               ),
                             ),
                             SizedBox(height: 10.0),
-                            Text("Password", style: Appwidget.currentBoldTextFieldStyle()),
+                            Text("Password",
+                                style: Appwidget.currentBoldTextFieldStyle()),
                             SizedBox(height: 10.0),
                             Container(
                               decoration: BoxDecoration(
@@ -210,7 +223,8 @@ class _SignupState extends State<Signup> {
                             ),
                             SizedBox(height: 10.0),
                             GestureDetector(
-                              onTap: registration, // Call directly, validation inside
+                              onTap:
+                                  registration, // Call directly, validation inside
                               child: Center(
                                 child: Container(
                                   padding: EdgeInsets.all(10),
@@ -236,13 +250,19 @@ class _SignupState extends State<Signup> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("Already have an account? ", style: Appwidget.semiBoldTextFieldStyle()),
+                                Text("Already have an account? ",
+                                    style: Appwidget.semiBoldTextFieldStyle()),
                                 SizedBox(width: 5.0),
                                 GestureDetector(
                                   onTap: () {
-                                    Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => Login()));
                                   },
-                                  child: Text("Login", style: Appwidget.currentBoldTextFieldStyle()),
+                                  child: Text("Login",
+                                      style: Appwidget
+                                          .currentBoldTextFieldStyle()),
                                 ),
                               ],
                             ),

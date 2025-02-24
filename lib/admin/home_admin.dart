@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryandecommerceapp/admin/add_food.dart';
 import 'package:fooddeliveryandecommerceapp/admin/all_order.dart';
 import 'package:fooddeliveryandecommerceapp/admin/manage_users.dart';
 import 'package:fooddeliveryandecommerceapp/widget/widget_support.dart';
@@ -130,6 +131,59 @@ class _HomeAdminState extends State<HomeAdmin> {
                               ),
                               Text(
                                 "Manage\nUsers",
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                    color: Color(0xffef2b39),
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: Icon(
+                                  Icons.arrow_forward_ios,
+                                  color: Colors.white,
+                                  size: 30.0,
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 80.0,
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Addfood()));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: Material(
+                        elevation: 3,
+                        borderRadius: BorderRadius.circular(20),
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              left: 20.0, right: 20.0, top: 10, bottom: 10),
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20)),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset(
+                                "images/tacos.png",
+                                height: 120,
+                                width: 120,
+                                fit: BoxFit.cover,
+                              ),
+                              Text(
+                                "Add Food\nItem",
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.0,

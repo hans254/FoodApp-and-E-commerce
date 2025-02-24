@@ -167,12 +167,13 @@ class _DetailPageState extends State<DetailPage> {
                         borderRadius: BorderRadius.circular(20.0),
                       ),
                       child: Center(
-                        child: Text("\$${(price * quantity).toStringAsFixed(2)}",
-                            style: TextStyle(
-                              fontSize: 20.0,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            )),
+                        child:
+                            Text("\$${(price * quantity).toStringAsFixed(2)}",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                )),
                       )),
                 ),
                 SizedBox(
@@ -208,5 +209,4 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  
 }
