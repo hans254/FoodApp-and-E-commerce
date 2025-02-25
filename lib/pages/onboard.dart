@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddeliveryandecommerceapp/pages/select_account.dart';
 import 'package:fooddeliveryandecommerceapp/pages/signup.dart';
 import 'package:fooddeliveryandecommerceapp/widget/content_model.dart';
 import 'package:fooddeliveryandecommerceapp/widget/widget_support.dart';
@@ -84,7 +85,7 @@ class _OnboardState extends State<Onboard> {
             onTap: () {
               if (currentIndex == contents.length - 1) {
                 Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => const Signup()));
+                    MaterialPageRoute(builder: (context) => const SelectAccount()));
               }
               _controller.nextPage(
                   duration: const Duration(milliseconds: 100),

@@ -21,6 +21,6 @@ List<OnboardingContent> contents=[
     title: "Easy and Online Payment",
   ),
   OnboardingContent(description: "We Deliver your food at your\n  Doorstep", 
-  image: "images/fried-chicken-with-grilled-potatoes-eggplants-tomatoes-peppers.jpg",
+  image: "images/Motorcycle_delivery.png",
   title: "Quick Delivery at your Doorstep")
 ];
